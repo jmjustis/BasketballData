@@ -128,7 +128,7 @@ getLongitude <- function(address) {
   return(longitude)
   
 }
-#Getting Latidudes and Longitudes vectors
+#Getting Latidudes and Longitudes vectors with the functions created from the previous lines
 
 schoolLatitudes <- c(getLatitude("University of Kentucky"),
                      getLatitude("University of California, Los Angeles, CA"),
@@ -162,7 +162,7 @@ schoolLongitudes <- c(getLongitude("University of Kentucky"),
                       getLongitude("St John's university, NY"),
                       getLongitude("Ohio State University, OH"))
 
-
+#Adding the vectors to our data
 top15SchoolsWithLoc <- data.frame(top15SchoolsWithLoc,schoolLatitudes,schoolLongitudes)
 
 
@@ -176,7 +176,7 @@ myBaseMap <- map.simple + geom_polygon(color='black', fill = 'wheat1',
                                        aes(x=long, y = lat, group = group)) + coord_map()
 
 
-  
+#Using ggplot with geom_point to add it to our map based on the school locations that were extracted.  
 
 myBaseMap + geom_point(data = top15SchoolsWithLoc,
                        aes(x = schoolLongitudes, y = schoolLatitudes,
@@ -186,7 +186,7 @@ myBaseMap + geom_point(data = top15SchoolsWithLoc,
   geom_text(data = top15SchoolsWithLoc, aes(x = schoolLongitudes, y = schoolLatitudes, 
                 label = SCHOOL, hjust=0, vjust=0, size = 1),size = 1.5) +
   theme(plot.title = element_text(hjust = 0.5))
-           
+    #Working with the International players data       
 #Adding performance variable to the df
 INTdf %>% mutate(performance = PTS + 2*AST + 1.5*REB) -> INTdf
 #summarizing countries by overall performance
@@ -201,7 +201,7 @@ INTbyPerformance <- INTbyPerformance %>% arrange(desc(total_performance))
 
 top25Countries <- INTbyPerformance %>% slice(1:25)
 
-
+#Generating the bar chart for the top 25 countries in ascending order
 ggplot(top25Countries) + aes(x = reorder(COUNTRY, total_performance), y = total_performance) + 
   geom_bar(stat="identity", colour = "black", fill = "lightblue") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
