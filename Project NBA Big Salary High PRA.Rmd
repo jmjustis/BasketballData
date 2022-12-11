@@ -1,0 +1,81 @@
+---
+title: "NBA Salary and PRA"
+output: html_document
+date: "2022-12-11"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+##this is the coding done to retrieve and view the dataset Player_Salary
+
+library(tidyverse)
+salaryDataset <- read_csv("C:\\Users\\madelyn\\Downloads\\Player_Salary.csv")
+view(salaryDataset)
+
+##this is the coding done to isolate salaryDataset so it just lists players and their salary aka value
+
+salary = salaryDataset %>% group_by(namePlayer)
+salary <- salary %>% summarise(value = sum(value))
+
+view(salary)
+
+##this is the coding done to retrieve and view the dataset Player_Attributes2
+
+playerDataset <- read_csv("C:\\Users\\madelyn\\Downloads\\Player_Attributes2.csv")
+
+colnames(playerDataset)[2] = "namePlayer"
+
+view(playerDataset)
+
+##this is the coding done to merge the salary table with the playerDataset table, according to the players name
+
+statsSalary <- merge(salary, playerDataset, by = "namePlayer")
+
+str(statsSalary)
+view(statsSalary)
+
+##this also shows me that there are no missing values in statsSalary
+summary(statsSalary$value)
+
+##this is me changing the column name in statsSalary from "value" to "salary"
+colnames(statsSalary)
+colnames(statsSalary)[2] = "salary"
+
+##here I am narrowing down the statsSalary table by creating a new subset of salaries that are over $100,000,000 and labeling it BigSalary
+BigSalary <- subset(statsSalary, statsSalary$salary > 100000000)
+
+##here I am seeing how many salaries are in this new group 
+str(BigSalary)
+summary(BigSalary)
+
+
+##Here I have made a bar chart of the NBA Players who are a part of the "Big Salary" and I have ordered it from highest salary, to lowest salary
+library(ggplot2)
+library(forcats)
+
+ggplot(data=BigSalary, aes(x=fct_reorder(namePlayer, salary), y=salary)) + geom_col() + coord_flip()+ ggtitle("Names of NBA Players with the Biggest Salary")
+
+
+##Here I am adding the values from PTS, REB, and AST for each player to get their PRA statistic. This is now going to be a new column in the statsSalary dataframe
+statsSalary$PRA<- statsSalary$PTS + statsSalary$AST + statsSalary$REB
+
+view(statsSalary)
+
+##Here I am seeing what the min, median, and max PRA are in this dataset
+summary(statsSalary$PRA)
+
+##here I am creating a subset table from statsSalary with the NBA players who have a PRA stat higher than 40
+HighPRA<- subset(statsSalary, statsSalary$PRA > 40)
+str(HighPRA)
+summary(HighPRA)
+
+
+##Here I have made a bar chart of the NBA Players who have a PRA higher than 40
+library(ggplot2)
+library(forcats)
+
+ggplot(data=HighPRA, aes(x=fct_reorder(namePlayer, PRA), y=PRA)) + geom_col() + coord_flip() + ggtitle("Names of NBA Players with the Highest PRA")
+
