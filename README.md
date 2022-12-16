@@ -2,5 +2,5 @@
 
 
 
-# BasketballData
-IST 687 Final Project
+# NBA Sports Analytics - A Managerial Approach
+### IST 687 Final Project
