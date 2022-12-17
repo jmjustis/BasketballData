@@ -41,6 +41,7 @@ Our approach was to put ourselves in the shoes of a management team that is assi
 Our team used a free data set from kaggle: https://www.kaggle.com/datasets/wyattowalsh/basketball. Which had an enormous amount of data from basketball games to player statistics. The database was in sqllite format given by kaggle so our team had to use an sql query via Jupyter notebooks in order to pull only the data that we needed. Each business question had its own dataset taken from the database.
 
 Exibit 3.1)
+![sample query](https://user-images.githubusercontent.com/119478875/208268033-eca28f39-73bd-479b-964b-f5bf904e9c83.png)
 
 
 
