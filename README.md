@@ -38,7 +38,7 @@ Our approach was to put ourselves in the shoes of a management team that is assi
 
 ## 3. Data Cleanse/ Munging/ Preparation    
 
-Our team used a free data set from kaggle: https://www.kaggle.com/datasets/wyattowalsh/basketball. Which had an enormous amount of data from basketball games to player statistics. The database was in sqllite format given by kaggle so our team had to use an sql query via Jupyter notebooks in order to pull only the data that we needed. Each business question had its own dataset taken from the database.
+Our team used a free data set from kaggle: https://www.kaggle.com/datasets/wyattowalsh/basketball. Which had an enormous amount of data from basketball games to player statistics. The database was in sqllite format given by kaggle so our team had to use an sql query via Jupyter notebooks in order to pull only the data that we needed. Each business question had its own dataset taken from the database. We extracted the dataset via sql and exported into csv format. From there, we would upload the csv into R to do our data cleansing. 
 
 Exibit 3.1) *This query was used to pull just the "player attributes" dataset from the database.*
 
