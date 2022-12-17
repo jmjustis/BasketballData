@@ -23,18 +23,18 @@ Our approach was to put ourselves in the shoes of a management team that is assi
 1. Is there a relationship between a player’s salary and player’s performance?
     * Do the same players with the highest PRA (points, rebounds & assists) make the most money?
 
-*This business question helps our team determine budgeting costs. What is the most optimal salary to pay? Does a big salary improve performance?*
+*(This business question helps our team determine budgeting costs. What is the most optimal salary to pay? Does a big salary improve performance?)*
 
 2. How significant is the the first draft pick?
     *If you are a basketball team manager, is it worth it to spend extra money or trade players to be a first round pick?
 
-*This is another budget question that will help managers of teams see how important salaries are to performance.*
+*(This is another budget question that will help managers of teams see how important salaries are to performance.)*
 
 3. What is the optimal geolocation to start a basketball team? What region has the best performing players?
     *Is there a specific birthplace that produces better basketball players?
     *Is there a specific college that produces better basketball players?
     
-*This final business question is to determine where to target the draft picks from*
+*(This final business question is to determine where to target the draft picks from)*
 
     
     
