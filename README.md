@@ -15,11 +15,11 @@
 7. Appendix - Code
 
 ***
-## Introduction
+## 1. Introduction
 
 Our approach was to put ourselves in the shoes of a management team that is assigned to put together the best NBA team possible. Our team put together a set of fundamental business questions that will help us determine where the team can save in costs as well as where to look for talent. We believe that our managerial approach is significally a better and more scientific approach rather than blindly trying to put together a team. 
 
-## Business Questions
+## 2. Business Questions
 1. Is there a relationship between a player’s salary and player’s performance?
     * Do the same players with the highest PRA (points, rebounds & assists) make the most money?
 
@@ -36,7 +36,14 @@ Our approach was to put ourselves in the shoes of a management team that is assi
     
 *(This final business question is to determine where to target the draft picks from)*
 
-## Data Cleanse/ Munging/ Preparation    
+## 3. Data Cleanse/ Munging/ Preparation    
+
+Our team used a free data set from kaggle: https://www.kaggle.com/datasets/wyattowalsh/basketball. Which had an enormous amount of data from basketball games to player statistics. The database was in sqllite format given by kaggle so our team had to use an sql query via Jupyter notebooks in order to pull only the data that we needed. Each business question had its own dataset taken from the database.
+
+Exibit 3.1)
+
+
+
 
 
 
