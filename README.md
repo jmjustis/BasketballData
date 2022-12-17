@@ -46,6 +46,50 @@ Exibit 3.1) *This query was used to pull just the "player attributes" dataset fr
 
 ### Data preparation for business question 1:
 
+* After the csv was read using read_csv(), we inspected the columns available to us and created a dataframe with the only columns we needed:
+
+df <- select(player_attributes_df,ID,FIRST_NAME,LAST_NAME,TEAM_NAME,SCHOOL,COUNTRY,POSITION,DRAFT_YEAR,DRAFT_NUMBER,PTS,AST,REB,ALL_STAR_APPEARANCES)
+
+* Next, we removed rows that show NA in the columns we selected in df.
+
+na.omit(df$DRAFT_NUMBER)
+
+* For points, assists and rebounds, we turned all NA's to zeros. We also did the same for All Star Appearances - the logic being, there was most likely no All Star Appreance if there is an NA.
+
+df <- df %>% mutate(PTS = ifelse(is.na(PTS), 0, PTS))
+df <- df %>% mutate(AST = ifelse(is.na(AST), 0, AST))
+df <- df %>% mutate(REB = ifelse(is.na(REB), 0, REB))
+df <- df %>% mutate(ALL_STAR_APPEARANCES = ifelse(is.na(ALL_STAR_APPEARANCES), 0, ALL_STAR_APPEARANCES))
+
+* Some columns also had values other than NA that needed to be removed too. Values that say "none" or "undrafted" were removed since those players did not end up getting drafted.
+
+df <-subset(df, DRAFT_NUMBER!="None" & DRAFT_NUMBER!="Undrafted")
+
+* We noticed that some columns needed to be numeric values such as draft number and draft year. So we made those changes: 
+
+df$DRAFT_NUMBER <- as.numeric(df$DRAFT_NUMBER)
+df$DRAFT_YEAR <- as.numeric(df$DRAFT_YEAR)
+
+* Now, some additional columns needed to be created. We wanted to create a binary column that either shows if someone had an All Star Appearance or not. The logic being that some players had many All Star Appearances and we did not want to scew the data too much. 
+
+df$ALL_STAR <- ifelse(df$ALL_STAR_APPEARANCES>=1,"YES","NO")
+
+* Finally, the last column we created was a way to combine all the possible points a player can earn into one number. We did this simply by adding all the points a player can earn by points, assits and rebounds. 
+
+TOTAL_POINTS <- df$PTS+df$AST+df$REB
+TOTAL_POINTS
+df$TOTAL_POINTS <- c(TOTAL_POINTS)
+
+
+
+
+
+
+
+
+
+
+
 
 ### Data preparation for business question 2:
 
