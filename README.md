@@ -36,6 +36,7 @@ Our approach was to put ourselves in the shoes of a management team that is assi
     
 *(This final business question is to determine where to target the draft picks from)*
 
-    
-    
+## Data Cleanse/ Munging/ Preparation    
+
+
 
