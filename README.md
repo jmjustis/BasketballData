@@ -92,6 +92,72 @@ df$TOTAL_POINTS <- c(TOTAL_POINTS)
 
 
 ### Data preparation for business question 2:
+# Is there a relationship between salary and player performance?
+## Data Cleanse and preparation
+In our data set the salary for players and the performance were located in two different tables.  The salary was listed for each contract, which meant in the salary table each player had multiple rows.  The first step to getting the data set ready was to group the contracts by the players name and get both the sum and average contract for each player in the salary table.
+ 
+
+After getting the salary dataset grouped by player with both sum and average contract, we could combine in with the table containing player performance statistics.
+ 
+
+After merging the datasets we were left with 415 players that had both player performance statistics as well as salary data.  We then added the statistics Points, Rebounds, and Assists into one variable called PRA.
+ 
+
+
+
+## Descriptive Statistics and Visualizations
+### Scatter Plots
+This scatter plot compares total production (Points + Rebounds + Assists) with career earnings of each player in the dataset.  There is a large grouping of players with very low career earnings which is likely due to a large proportion of players only receiving one or two contracts in their careers as well as younger players that are still on of their first contracts even if that contract is large their career earnings are smaller compared to more experienced players.  
+
+
+
+
+
+
+
+
+
+
+
+This scatter plot compares total production with average contract (not average per year as the data set did not provide lengths on contracts).  When comparing performance with average salary rather than total salary, the data is spread more evenly and appears to have a stronger linear relationship.
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Column Charts
+This column chart compares years of experience with total career earnings for each player in the dataset.
+ 
+This column chart compares years of experience with average career earnings for each player in the dataset.
+ 
+This column chart compares our performance statistic PRA with total years of expereince for each player in the dataset.
+ 
+From these datasets we can see that actually players with a medium level of experience (3-8) years seem to have the largest salaries both total and average contract and players with the most experience have the lowest total and average salaries.  Based on the chart showing performance and experience younger players in this dataset have much higher production than older players.  We would have suspected that more older players would have higher total career earnings but since our data set only has salary information for 415 players out of the 4500 total players in the set, it Is likely that these observations are not reflective of the whole.
+
+
+
+
+
+
+
+
+
+## Data Modeling
+### Linear Models
+For the salary dataset we did two linear models with both total salary and average salary vs our performance statistic, PRA.  
+ 
+ 
+The first linear model for total salary has an adjusted R squared value of .53 which means that approximately 53% of the variance in total salary is explained by our performance statistic.  Average salary has a higher adjusted R squared with 62% of the variance in average salary being explained by the performance statistic.
 
 
 ### Data preparation for business question 3:
