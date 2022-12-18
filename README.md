@@ -11,8 +11,7 @@
 3. Data Cleanse/ Munging/ Preparation
 4. Descriptive Statistics/ Vizualizations
 5. Data Modeling
-6. Validation
-7. Appendix - Code
+6. Appendix - Code
 
 ***
 ## 1. Introduction
@@ -80,17 +79,6 @@ TOTAL_POINTS <- df$PTS+df$AST+df$REB
 TOTAL_POINTS
 df$TOTAL_POINTS <- c(TOTAL_POINTS)
 
-
-
-
-
-
-
-
-
-
-
-
 ### Data preparation for business question 2:
 
 In our data set the salary for players and the performance were located in two different tables.  The salary was listed for each contract, which meant in the salary table each player had multiple rows.  The first step to getting the data set ready was to group the contracts by the players name and get both the sum and average contract for each player in the salary table.
@@ -105,9 +93,14 @@ After merging the datasets we were left with 415 players that had both player pe
 ![Picture2](https://user-images.githubusercontent.com/80026659/208272691-31bc6d90-c9ee-47a0-84a4-4cc79ebc0bc4.png)
 
 
+### Data preparation for business question 3:
 
+## 4. Descriptive Statistics & Visualizations
 
-## Descriptive Statistics and Visualizations
+### Statistics & Visualizations for Business Question 1
+
+### Statistics & Visualizations for Business Question 2
+
 ### Scatter Plots
 This scatter plot compares total production (Points + Rebounds + Assists) with career earnings of each player in the dataset.  There is a large grouping of players with very low career earnings which is likely due to a large proportion of players only receiving one or two contracts in their careers as well as younger players that are still on of their first contracts even if that contract is large their career earnings are smaller compared to more experienced players.  
 
@@ -155,12 +148,14 @@ From these datasets we can see that actually players with a medium level of expe
 
 
 
+### Statistics & Visualizations for Business Question 3
 
 
 
 
+## 5. Data Modeling
 
-## Data Modeling
+
 ### Linear Models
 For the salary dataset we did two linear models with both total salary and average salary vs our performance statistic, PRA.  
 ![Picture8](https://user-images.githubusercontent.com/80026659/208272780-f04181cc-5448-4bb1-8aaf-b854566bd498.png)
@@ -170,7 +165,7 @@ For the salary dataset we did two linear models with both total salary and avera
 The first linear model for total salary has an adjusted R squared value of .53 which means that approximately 53% of the variance in total salary is explained by our performance statistic.  Average salary has a higher adjusted R squared with 62% of the variance in average salary being explained by the performance statistic.
 
 
-### Data preparation for business question 3:
+
 
 
 
