@@ -95,19 +95,23 @@ df$TOTAL_POINTS <- c(TOTAL_POINTS)
 # Is there a relationship between salary and player performance?
 ## Data Cleanse and preparation
 In our data set the salary for players and the performance were located in two different tables.  The salary was listed for each contract, which meant in the salary table each player had multiple rows.  The first step to getting the data set ready was to group the contracts by the players name and get both the sum and average contract for each player in the salary table.
- 
+ ![Picture1](https://user-images.githubusercontent.com/80026659/208272688-3c842eec-723e-4c28-99b3-5d354dda0c40.png)
 
 After getting the salary dataset grouped by player with both sum and average contract, we could combine in with the table containing player performance statistics.
- 
+![Picture10](https://user-images.githubusercontent.com/80026659/208272762-04d0b7ee-fe60-43ea-8ae9-dbb6d63049fa.png)
+
 
 After merging the datasets we were left with 415 players that had both player performance statistics as well as salary data.  We then added the statistics Points, Rebounds, and Assists into one variable called PRA.
- 
+![Picture2](https://user-images.githubusercontent.com/80026659/208272691-31bc6d90-c9ee-47a0-84a4-4cc79ebc0bc4.png)
+
 
 
 
 ## Descriptive Statistics and Visualizations
 ### Scatter Plots
 This scatter plot compares total production (Points + Rebounds + Assists) with career earnings of each player in the dataset.  There is a large grouping of players with very low career earnings which is likely due to a large proportion of players only receiving one or two contracts in their careers as well as younger players that are still on of their first contracts even if that contract is large their career earnings are smaller compared to more experienced players.  
+
+![Picture3](https://user-images.githubusercontent.com/80026659/208272695-3a6d3d17-69bc-4c48-9996-57d03107c972.png)
 
 
 
@@ -120,7 +124,8 @@ This scatter plot compares total production (Points + Rebounds + Assists) with c
 
 
 This scatter plot compares total production with average contract (not average per year as the data set did not provide lengths on contracts).  When comparing performance with average salary rather than total salary, the data is spread more evenly and appears to have a stronger linear relationship.
- 
+
+![Picture4](https://user-images.githubusercontent.com/80026659/208272697-567af282-91dd-48b5-9347-f90ac00dbe44.png)
 
 
 
@@ -137,11 +142,14 @@ This scatter plot compares total production with average contract (not average p
 
 ### Column Charts
 This column chart compares years of experience with total career earnings for each player in the dataset.
- 
+![Picture5](https://user-images.githubusercontent.com/80026659/208272772-b18f26bd-4ee4-4fe6-b511-ae9448069b8c.png)
+
 This column chart compares years of experience with average career earnings for each player in the dataset.
- 
+![Picture6](https://user-images.githubusercontent.com/80026659/208272776-97f92661-9b2f-4339-9895-cf97e974f7c8.png)
+
 This column chart compares our performance statistic PRA with total years of expereince for each player in the dataset.
- 
+![Picture7](https://user-images.githubusercontent.com/80026659/208272778-252fd06a-d3b3-4e0c-b231-9978575384f9.png)
+
 From these datasets we can see that actually players with a medium level of experience (3-8) years seem to have the largest salaries both total and average contract and players with the most experience have the lowest total and average salaries.  Based on the chart showing performance and experience younger players in this dataset have much higher production than older players.  We would have suspected that more older players would have higher total career earnings but since our data set only has salary information for 415 players out of the 4500 total players in the set, it Is likely that these observations are not reflective of the whole.
 
 
@@ -155,7 +163,9 @@ From these datasets we can see that actually players with a medium level of expe
 ## Data Modeling
 ### Linear Models
 For the salary dataset we did two linear models with both total salary and average salary vs our performance statistic, PRA.  
- 
+![Picture8](https://user-images.githubusercontent.com/80026659/208272780-f04181cc-5448-4bb1-8aaf-b854566bd498.png)
+![Picture9](https://user-images.githubusercontent.com/80026659/208272782-2ba9a953-4c9d-413f-b449-29c4451d49bb.png)
+
  
 The first linear model for total salary has an adjusted R squared value of .53 which means that approximately 53% of the variance in total salary is explained by our performance statistic.  Average salary has a higher adjusted R squared with 62% of the variance in average salary being explained by the performance statistic.
 
