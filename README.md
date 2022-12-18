@@ -92,9 +92,9 @@ df$TOTAL_POINTS <- c(TOTAL_POINTS)
 
 
 ### Data preparation for business question 2:
-# Is there a relationship between salary and player performance?
-## Data Cleanse and preparation
+
 In our data set the salary for players and the performance were located in two different tables.  The salary was listed for each contract, which meant in the salary table each player had multiple rows.  The first step to getting the data set ready was to group the contracts by the players name and get both the sum and average contract for each player in the salary table.
+
  ![Picture1](https://user-images.githubusercontent.com/80026659/208272688-3c842eec-723e-4c28-99b3-5d354dda0c40.png)
 
 After getting the salary dataset grouped by player with both sum and average contract, we could combine in with the table containing player performance statistics.
