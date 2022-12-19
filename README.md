@@ -162,9 +162,21 @@ For the salary dataset we did two linear models with both total salary and avera
  
 The first linear model for total salary has an adjusted R squared value of .53 which means that approximately 53% of the variance in total salary is explained by our performance statistic.  Average salary has a higher adjusted R squared with 62% of the variance in average salary being explained by the performance statistic.
 
+### Data Modeling for Business Question 2: First Draft Pick
 
 
 
+
+
+### Data Modeling for Business Question 3:  Optimal Geolocation
+
+## 6.Conclusions
+
+
+
+## 7. Apendix
+
+Each block of code is also found on this github in each individual folder. Down below is the combination of all the code run in R. 
 
 
 
