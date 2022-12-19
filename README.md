@@ -214,9 +214,6 @@ While the model shows to have great predictive power, the big point here is that
 ![SVM model confusion matrix](https://user-images.githubusercontent.com/119478875/208362955-23cef2be-7dd9-498c-b203-5d822046c0d0.png)
 
 
-
-### Data Modeling for Business Question 3:  Optimal Geolocation
-
 ## 6.Conclusions
 
 Our team would like to first point out that we utilized a free dataset and we believe that our findings could reveal a lot more if we were able to utilize a paid dataset. However, with the free data available, we were able to pull useful insights for basketball managers or scouts. The first business question about player vs. salary shows that if considering performance to be derived from PRA points, then the majority of the talent pool lies in the average salary range. This is big because it shows that a manager does not need to pay top dollar for a top performer.
