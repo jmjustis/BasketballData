@@ -164,7 +164,17 @@ The first linear model for total salary has an adjusted R squared value of .53 w
 
 ### Data Modeling for Business Question 2: First Draft Pick
 
+Our team wanted to run two types of models on first draft picks. One of which was the linear regression approach which would be useful to find out if the amount of points a player earned had any effect due to the fact that they were a first round draft pick.
 
+The second model was the Support Vector Machine that would be able to see if there was a way to predict whether being a first round pick had a higher chance of earning an All Star Appearance. 
+
+* LINEAR MODEL
+![LM model](https://user-images.githubusercontent.com/119478875/208361882-4a2e3386-333e-45c5-b62f-117fa13112ea.png)
+
+We set up our model and trained it using 70% of the data set. We then saw how well of a predictive model this was down below:
+
+
+![Linear Model Outcome 1](https://user-images.githubusercontent.com/119478875/208361806-2cb68f76-64aa-49a1-ac20-c5cc21afca2f.png)
 
 
 
