@@ -149,6 +149,10 @@ After the data was cleaned for business question 2, we decided to run some ggplo
 *As suspected, the line of best fit does not look good here with data dispearsed all over.*
 
 ### Statistics & Visualizations for Business Question 3: Optimal Geolocation
+
+
+![Top schools by total amount of NBA players produced](https://user-images.githubusercontent.com/119911893/208447651-841a5594-0aea-47f0-a6eb-60724b54b6f0.png)
+
 ![Top schools by historical amount of all star players](https://user-images.githubusercontent.com/119911893/208446975-6623fed0-6a78-4c09-a6d2-36adc07b50d0.png)
 
 
