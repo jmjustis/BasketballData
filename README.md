@@ -106,7 +106,6 @@ This scatter plot compares total production (Points + Rebounds + Assists) with c
 
 ![Picture3](https://user-images.githubusercontent.com/80026659/208272695-3a6d3d17-69bc-4c48-9996-57d03107c972.png)
 
-
 This scatter plot compares total production with average contract (not average per year as the data set did not provide lengths on contracts).  When comparing performance with average salary rather than total salary, the data is spread more evenly and appears to have a stronger linear relationship.
 
 ![Picture4](https://user-images.githubusercontent.com/80026659/208272697-567af282-91dd-48b5-9347-f90ac00dbe44.png)
@@ -125,6 +124,19 @@ This column chart compares our performance statistic PRA with total years of exp
 ![Picture7](https://user-images.githubusercontent.com/80026659/208272778-252fd06a-d3b3-4e0c-b231-9978575384f9.png)
 
 From these datasets we can see that actually players with a medium level of experience (3-8) years seem to have the largest salaries both total and average contract and players with the most experience have the lowest total and average salaries.  Based on the chart showing performance and experience younger players in this dataset have much higher production than older players.  We would have suspected that more older players would have higher total career earnings but since our data set only has salary information for 415 players out of the 4500 total players in the set, it Is likely that these observations are not reflective of the whole.
+
+### Bar Charts
+These two bar charts compare the players who have the highest salaries in the NBA and the players who have high PRA statistics. The values we used to measure high salary and high PRA are $100,000,000 and 40. 
+
+Here is the bar chart for players with a salary over $100,000,000. 
+
+![Big Salary Order](https://user-images.githubusercontent.com/118240779/208514529-b243826e-67b6-4ef0-a06e-0b273c818f73.png)
+
+Here is the bar chart for players with a PRA over 40. 
+
+![HIGH PRA Order](https://user-images.githubusercontent.com/118240779/208514475-78c51468-9134-43d1-8484-87d185858707.png)
+
+From these datasets, we can see that a few player names can be found on both the salary and PRA charts. We can see how high they are on each of the lists as well. Based on these charts, we can see that a few players, or 6 to be exact, reach both of these requirements. However, there are several players who only appear on one but not the other. Using this visual model, we can see there is a possible relationship between players who make a lot of money and players who perform very well on the court. However, it is not a 100% accurate correlation. 
 
 
 ### Statistics & Visualizations for Business Question 2: First Draft Pick
@@ -176,8 +188,9 @@ For the salary dataset we did two linear models with both total salary and avera
 ![Picture8](https://user-images.githubusercontent.com/80026659/208272780-f04181cc-5448-4bb1-8aaf-b854566bd498.png)
 ![Picture9](https://user-images.githubusercontent.com/80026659/208272782-2ba9a953-4c9d-413f-b449-29c4451d49bb.png)
 
- 
 The first linear model for total salary has an adjusted R squared value of .53 which means that approximately 53% of the variance in total salary is explained by our performance statistic.  Average salary has a higher adjusted R squared with 62% of the variance in average salary being explained by the performance statistic.
+
+*SVM Model for Business Question 1: Salary vs. Player Performance 
 
 ### Data Modeling for Business Question 2: First Draft Pick
 
