@@ -241,9 +241,6 @@ ggplot(statsSalary, aes(x = salary, y = PRA)) + geom_point() + ggtitle("Points +
 ggplot(statsSalary, aes(x = avgSalary, y = PRA)) + geom_point() + ggtitle("Points + Rebounds + Assists vs Average Salary")
 
 ---
-title: "NBA Salary and PRA"
-output: html_document
-date: "2022-12-11"
 ---
 
 ```{r setup, include=FALSE}
@@ -339,9 +336,6 @@ str(player_attributes_df)
 #################
 #Business Question
 #How significant is the the first draft pick?
-  # does a first round pick player perform?
-  #How does a first round pick player perform against the last round pick?
-  #If you are a basketball team manager, is it worth it to spend extra?
 #################
 
 #I have to decide what columns I will want to need and what columns I do not.Then, create new dataframe called df.  
