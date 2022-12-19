@@ -161,7 +161,8 @@ Here we further filter schools by amount of players that had at least one all st
 Mapping those results you can see that not suprisingly most of the schools who developed the most amount of NBA players also developed the most all stars
 ![Top schools by historical amount of all star players map](https://user-images.githubusercontent.com/119911893/208446975-6623fed0-6a78-4c09-a6d2-36adc07b50d0.png)
 ### Bar Chart for International countries based by players performance
- On this bar chart we take a look at which international countries were the most successful at developing players into the NBA
+ On this bar chart we take a look at which international countries were the most successful at developing players into the NBA based on the formula
+ (PTS + 2*AST + 1.5 *Reb)
 ![Top international countries by players perfomance](https://user-images.githubusercontent.com/119911893/208448814-d9eff148-62b7-4323-9882-4ac11dfc3c98.png)
 
 In conclusion you can see by the addition of maps that a great majority of the top schools in both metrics are located in the mid west region of the US. And you can see that not surprisingly the top schools include big names like UCLA, Kentucky and Duke.
