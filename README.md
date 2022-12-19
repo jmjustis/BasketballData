@@ -203,6 +203,11 @@ While the model shows to have great predictive power, the big point here is that
 
 ## 6.Conclusions
 
+Our team would like to first point out that we utilized a free dataset and we believe that our findings could reveal a lot more if we were able to utilize a paid dataset. However, with the free data available, we were able to pull useful insights for basketball managers or scouts. The first business question about player vs. salary shows that if considering performance to be derived from PRA points, then the majority of the talent pool lies in the average salary range. This is big because it shows that a manager does not need to pay top dollar for a top performer.
+
+Furthermore, for business question 2, we show that a first draft pick does not necessarily correlate with great performance. This goes against all logic since typically fans and teams will rely on the draft pick process to speculate how well their team will perform. However, our data shows otherwise and we speculate that this is because managers and scouts could be attracted to players because of "fear of missing out" or focusing too much on "trending players". Whatever the case may be, it would not unreasonable to state that there is a lot of hubris in the basketball industry when it comes to managing teams.
+
+Finally, our last business question shows exactly which schools should be targetted when recruiting players. Statistically, we see a strong correlation of which schools produce the best players. Further analysis can even be done with more data on why these schools produce the best players. 
 
 
 ## 7. Apendix
