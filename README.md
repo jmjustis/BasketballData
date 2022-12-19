@@ -209,5 +209,473 @@ While the model shows to have great predictive power, the big point here is that
 
 Each block of code is also found on this github in each individual folder. Down below is the combination of all the code run in R. 
 
+1. Business Question 1:
+library(tidyverse)
+
+salaryDataset <- read_csv("C:\\Users\\mistr\\Downloads\\Player_Salary.csv")
+
+view(salaryDataset)
+
+salary = salaryDataset %>% group_by(namePlayer)
+salary <- salary %>% summarise(value = sum(value))
+avgSalary = salaryDataset %>% group_by(namePlayer)
+avgSalary <- avgSalary %>% summarise(value = mean(value))
+
+view(salary)
+
+playerDataset <- read_csv("C:\\Users\\mistr\\Downloads\\Player_Attributes2.csv")
+
+colnames(playerDataset)[2] = "namePlayer"
+
+view(playerDataset)
+
+statsSalary <- merge(salary, playerDataset, by = "namePlayer")
+statsSalary <- merge(statsSalary, avgSalary, by = "namePlayer")
+
+statsSalary$PRA <- statsSalary$PTS + statsSalary$AST + statsSalary$REB
+colnames(statsSalary)[2] = "salary"
+colnames(statsSalary)[10] = "avgSalary"
+
+ggplot(statsSalary, aes(x = salary, y = PRA)) + geom_point() + ggtitle("Points + Rebounds + Assists vs Total Salary")
+
+ggplot(statsSalary, aes(x = avgSalary, y = PRA)) + geom_point() + ggtitle("Points + Rebounds + Assists vs Average Salary")
+
+---
+title: "NBA Salary and PRA"
+output: html_document
+date: "2022-12-11"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+##this is the coding done to retrieve and view the dataset Player_Salary
+
+library(tidyverse)
+salaryDataset <- read_csv("C:\\Users\\madelyn\\Downloads\\Player_Salary.csv")
+view(salaryDataset)
+
+##this is the coding done to isolate salaryDataset so it just lists players and their salary aka value
+
+salary = salaryDataset %>% group_by(namePlayer)
+salary <- salary %>% summarise(value = sum(value))
+
+view(salary)
+
+##this is the coding done to retrieve and view the dataset Player_Attributes2
+
+playerDataset <- read_csv("C:\\Users\\madelyn\\Downloads\\Player_Attributes2.csv")
+
+colnames(playerDataset)[2] = "namePlayer"
+
+view(playerDataset)
+
+##this is the coding done to merge the salary table with the playerDataset table, according to the players name
+
+statsSalary <- merge(salary, playerDataset, by = "namePlayer")
+
+str(statsSalary)
+view(statsSalary)
+
+##this also shows me that there are no missing values in statsSalary
+summary(statsSalary$value)
+
+##this is me changing the column name in statsSalary from "value" to "salary"
+colnames(statsSalary)
+colnames(statsSalary)[2] = "salary"
+
+##here I am narrowing down the statsSalary table by creating a new subset of salaries that are over $100,000,000 and labeling it BigSalary
+BigSalary <- subset(statsSalary, statsSalary$salary > 100000000)
+
+##here I am seeing how many salaries are in this new group 
+str(BigSalary)
+summary(BigSalary)
+
+
+##Here I have made a bar chart of the NBA Players who are a part of the "Big Salary" and I have ordered it from highest salary, to lowest salary
+library(ggplot2)
+library(forcats)
+
+ggplot(data=BigSalary, aes(x=fct_reorder(namePlayer, salary), y=salary)) + geom_col() + coord_flip()+ ggtitle("Names of NBA Players with the Biggest Salary")
+
+
+##Here I am adding the values from PTS, REB, and AST for each player to get their PRA statistic. This is now going to be a new column in the statsSalary dataframe
+statsSalary$PRA<- statsSalary$PTS + statsSalary$AST + statsSalary$REB
+
+view(statsSalary)
+
+##Here I am seeing what the min, median, and max PRA are in this dataset
+summary(statsSalary$PRA)
+
+##here I am creating a subset table from statsSalary with the NBA players who have a PRA stat higher than 40
+HighPRA<- subset(statsSalary, statsSalary$PRA > 40)
+str(HighPRA)
+summary(HighPRA)
+
+
+##Here I have made a bar chart of the NBA Players who have a PRA higher than 40
+library(ggplot2)
+library(forcats)
+
+ggplot(data=HighPRA, aes(x=fct_reorder(namePlayer, PRA), y=PRA)) + geom_col() + coord_flip() + ggtitle("Names of NBA Players with the Highest PRA")
+
+Business Question 2:
+
+##########################################################################
+#Step 1: Import database of NBA data:
+
+library(tidyverse)
+library(ggplot2)
+
+library(readr)
+#exploring database
+
+player_attributes_df <- read_csv('C:/Users/nicky/Desktop/IST 687/Project/draft_pick_analysis_data_set.csv')
+view(player_attributes_df)
+str(player_attributes_df)
+
+#################
+#Business Question
+#How significant is the the first draft pick?
+  # does a first round pick player perform?
+  #How does a first round pick player perform against the last round pick?
+  #If you are a basketball team manager, is it worth it to spend extra?
+#################
+
+#I have to decide what columns I will want to need and what columns I do not.Then, create new dataframe called df.  
+
+df <- select(player_attributes_df,ID,FIRST_NAME,LAST_NAME,TEAM_NAME,SCHOOL,COUNTRY,POSITION,DRAFT_YEAR,DRAFT_NUMBER,PTS,AST,REB,ALL_STAR_APPEARANCES)
+df
+
+
+#next we will have to remove rows that show NA in the columns we need
+
+na.omit(df$DRAFT_NUMBER)
+
+#for points, assists and rebounds, we will turn them to zero if NA. Also for All star appearances.
+df <- df %>% mutate(PTS = ifelse(is.na(PTS), 0, PTS))
+df <- df %>% mutate(AST = ifelse(is.na(AST), 0, AST))
+df <- df %>% mutate(REB = ifelse(is.na(REB), 0, REB))
+df <- df %>% mutate(ALL_STAR_APPEARANCES = ifelse(is.na(ALL_STAR_APPEARANCES), 0, ALL_STAR_APPEARANCES))
+view(df)
+
+#next, we need to clean columns that have a value of "undrafted" or "none"
+
+str(df)
+df <-subset(df, DRAFT_NUMBER!="None" & DRAFT_NUMBER!="Undrafted")
+
+view(df)
+
+
+#need to turn some columns into numeric values such as draft number and draft year.
+str(df)
+
+df$DRAFT_NUMBER <- as.numeric(df$DRAFT_NUMBER)
+df$DRAFT_YEAR <- as.numeric(df$DRAFT_YEAR)
+
+
+str(df)
+
+summary(df)
+view(df)
+
+#next, I want to create a binary column that either shows a 1 if there was an all star appearance, or 0 if there was no all star appearance. 
+
+df$ALL_STAR <- ifelse(df$ALL_STAR_APPEARANCES>=1,"YES","NO")
+
+view(df)
+
+str(df)
+
+#visualizations
+
+myplot <- ggplot(df, aes(x=ALL_STAR, y=DRAFT_NUMBER)) + geom_point() 
+myplot
+
+
+
+#creating a column to calculate player with best stats by adding points, assists and rebounds
+
+TOTAL_POINTS <- df$PTS+df$AST+df$REB
+TOTAL_POINTS
+df$TOTAL_POINTS <- c(TOTAL_POINTS)
+str(df)
+
+myplot2 <- ggplot(df, aes(x=DRAFT_NUMBER, y=TOTAL_POINTS)) + geom_point()
+myplot2
+
+myplot3 <- ggplot(df, aes(x=DRAFT_NUMBER, y=TOTAL_POINTS)) + geom_point() + geom_smooth(method=lm)
+myplot3
+
+
+#let's see if there is a relationship between total points and draft pick using linear regression
+library(caret)
+
+trainList <- createDataPartition(df$DRAFT_NUMBER,p=.7,list=FALSE)
+trainData <- df[trainList,]
+testData <- df[-trainList,]
+
+dim(trainData)
+dim(testData)
+
+set.seed(123)
+
+lm.model <- train(TOTAL_POINTS ~ DRAFT_NUMBER, data = trainData, trControl=trainControl(method='none'),method='lm')
+summary(lm.model)
+
+predictValues <- predict(lm.model, newdata=testData)
+cor(predictValues,testData$TOTAL_POINTS)^2
+
+#we see that R squared is low and so is the correlation
+
+length(df$ALL_STAR[is.na(df$ALL_STAR)])
+
+#Making it a factor
+df$ALL_STAR <- as.factor(df$ALL_STAR)
+
+#SVM model that shows if draft number is a good predictor of an all star appearance
+#set.seed(123)
+trainList2 <- createDataPartition(y=df$ALL_STAR,p=.70,list=FALSE)
+trainData2 <- df[trainList2,]
+testData2 <- df[-trainList2,]
+
+dim(trainData2)
+dim(testData2)
+
+svm.model <- train(ALL_STAR ~ DRAFT_NUMBER + TOTAL_POINTS
+                   , data=trainData2,method='svmRadial',trControl=trainControl(method='none'),
+                   preProcess= c('center','scale'))
+svm.model$finalModel
+svmPred <- predict(svm.model, testData2, type='raw')
+confusionMatrix(testData2$ALL_STAR,svmPred)
+
+Business Question 3:
+
+library(readr)
+library(sqldf)
+library(RSQLite)
+library(tidyverse)
+
+
+df <- read_csv('C:/Users/ijo28/Downloads/nba_players.csv')
+
+
+
+
+library(tidyverse)
+df <- df[,-1] #Getting rid of the indexes
+
+#Checking for NA's in my attributes
+
+length(df$DISPLAY_FIRST_LAST[is.na(df$DISPLAY_FIRST_LAST)])
+length(df$DRAFT_YEAR[is.na(df$DRAFT_YEAR)])
+length(df$SCHOOL[is.na(df$SCHOOL)])
+length(df$COUNTRY[is.na(df$COUNTRY)])
+length(df$PTS[is.na(df$PTS)])
+length(df$AST[is.na(df$AST)])
+length(df$REB[is.na(df$REB)])
+length(df$ALL_STAR_APPEARANCES[is.na(df$ALL_STAR_APPEARANCES)])
+
+#Filtering and substituting NAs
+df %>% filter(!is.na(SCHOOL)) -> df
+
+df$PTS[is.na(df$PTS)] <- 0
+df$AST[is.na(df$AST)] <- 0
+df$REB[is.na(df$REB)] <- 0
+df$ALL_STAR_APPEARANCES[is.na(df$ALL_STAR_APPEARANCES)] <- 0
+
+#Getting data for US Players
+df %>% filter(COUNTRY == 'USA') -> USdf
+
+#International players 
+df %>% filter(COUNTRY != 'USA') -> INTdf
+
+
+
+library(dplyr)
+
+
+USdf %>% group_by(SCHOOL) %>% summarise(length(DISPLAY_FIRST_LAST)) -> School
+
+#Renaming the grouped column
+
+colnames(School)[which(names(School) == "length(DISPLAY_FIRST_LAST)")] <- "total_nba_players"
+
+#Arranging the df in descending order of total players
+School %>% arrange(desc(total_nba_players)) -> School
+
+
+#Filtering by the top 15 schools
+
+School %>% slice(1:15) -> top15Schools
+
+Top15SchoolsDesc <- top15Schools
+#Ordering the data in descending order for plotting
+Top15SchoolsDesc$SCHOOL <- factor(Top15SchoolsDesc$SCHOOL, levels =
+                                    Top15SchoolsDesc$SCHOOL[order(
+                                      Top15SchoolsDesc$total_nba_players,
+                                      decreasing = TRUE)])
+#Generating the bar graph
+ggplot(Top15SchoolsDesc) + aes(x=SCHOOL, y = total_nba_players) + 
+  geom_bar(stat="identity", colour = "black", fill = "lightblue") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  ggtitle("Total nba players by school") + xlab("School") +
+  ylab("Players amount")
+
+#School location vector
+
+Location <- c("University of Kentucky"," University of California Los Angeles, CA 90095",
+              "North Carolina Chapel hill, NC"," Duke Durham, NC",
+              " Kansas University Lawrence, KS","Indiana University Bloomington, IN", 
+              "Notre Dame, IN","University of Arizona, AZ",
+              "University of Louisville, KY","University of Michigan, Ann Arbor, MI",
+              "Michigan State university, MI","Syracuse University, NY",
+              "Villanova university, PA","St John's university , NY","Ohio State University, OH")
+
+#Adding the location to the Schools
+top15SchoolsWithLoc <- data.frame(top15Schools,Location)
+
+#Created two functions to get coordinates
+
+
+#Separating the function into Getting latitudes and longitudes individually
+getLatitude <- function(address) {
+  library(jsonlite)
+  library(stringr)
+  #%20 is the code to indicate blank spaces in the url we want to use
+  address <- str_replace_all(address, " ", "%20")
+  
+  #define the url to get the geocode
+  
+  urlOfGEOCode <- paste0('https://nominatim.openstreetmap.org/search/',
+                         address,'?format=json&addressdetails=0&limit=1')
+  
+  #Get the location data in Json format
+  
+  df1 <- jsonlite::fromJSON(urlOfGEOCode)
+  
+  #Get long or lat from df 
+  
+  latitude = as.numeric(df1$lat)
+  
+  return(latitude)
+}
+
+
+getLongitude <- function(address) {
+  library(jsonlite)
+  library(stringr)
+  
+  address <- str_replace_all(address, " ", "%20")
+  
+  #define the url to get the geocode
+  
+  urlOfGEOCode <- paste0('https://nominatim.openstreetmap.org/search/',
+                         address,'?format=json&addressdetails=0&limit=1')
+  
+  #Get the location data in Json format
+  
+  df1 <- jsonlite::fromJSON(urlOfGEOCode)
+  longitude = as.numeric(df1$lon)
+
+  return(longitude)
+  
+}
+#Getting Latidudes and Longitudes vectors with the functions created from the previous lines
+
+schoolLatitudes <- c(getLatitude("University of Kentucky"),
+                     getLatitude("University of California, Los Angeles, CA"),
+                     getLatitude("North Carolina Chapel hill, NC"),
+                     getLatitude("Duke Durham, NC"),
+                     getLatitude("Kansas University Lawrence, KS"),
+                     getLatitude("Indiana University Bloomington, IN"),
+                     getLatitude("Notre Dame, IN"),
+                     getLatitude("University of Arizona, AZ"),
+                     getLatitude("University of Louisville, KY"),
+                     getLatitude("University of Michigan, Ann Arbor, MI"),
+                     getLatitude("Michigan State university, MI"),
+                     getLatitude("Syracuse University, NY"),
+                     getLatitude("Villanova university, PA"),
+                     getLatitude("St John's university, NY"),
+                     getLatitude("Ohio State University, OH"))
+
+schoolLongitudes <- c(getLongitude("University of Kentucky"),
+                      getLongitude("University of California, Los Angeles, CA"),
+                      getLongitude("North Carolina Chapel hill, NC"),
+                      getLongitude("Duke Durham, NC"),
+                      getLongitude("Kansas University Lawrence, KS"),
+                      getLongitude("Indiana University Bloomington, IN"),
+                      getLongitude("Notre Dame, IN"),
+                      getLongitude("University of Arizona, AZ"),
+                      getLongitude("University of Louisville, KY"),
+                      getLongitude("University of Michigan, Ann Arbor, MI"),
+                      getLongitude("Michigan State university, MI"),
+                      getLongitude("Syracuse University, NY"),
+                      getLongitude("Villanova university, PA"),
+                      getLongitude("St John's university, NY"),
+                      getLongitude("Ohio State University, OH"))
+
+#Adding the vectors to our data
+top15SchoolsWithLoc <- data.frame(top15SchoolsWithLoc,schoolLatitudes,schoolLongitudes)
+
+
+#Creating the base map
+library(ggmap)
+library(maps)
+US <- map_data("state")
+map.simple <- ggplot(US)
+
+myBaseMap <- map.simple + geom_polygon(color='black', fill = 'wheat1',
+                                       aes(x=long, y = lat, group = group)) + coord_map()
+
+
+#Using ggplot with geom_point to add it to our map based on the school locations that were extracted.  
+
+myBaseMap + geom_point(data = top15SchoolsWithLoc,
+                       aes(x = schoolLongitudes, y = schoolLatitudes,
+                           color = total_nba_players), 
+                       size = 1.5) +
+  scale_color_continuous(trans = 'reverse') + ggtitle("Top US schools location map") +
+  geom_text(data = top15SchoolsWithLoc, aes(x = schoolLongitudes, y = schoolLatitudes, 
+                label = SCHOOL, hjust=0, vjust=0, size = 1),size = 1.5) +
+  theme(plot.title = element_text(hjust = 0.5))
+    #Working with the International players data       
+#Adding performance variable to the df
+INTdf %>% mutate(performance = PTS + 2*AST + 1.5*REB) -> INTdf
+#summarizing countries by overall performance
+
+INTdf %>% group_by(COUNTRY) %>% summarise(sum(performance)) -> INTbyPerformance
+
+#Renaming column and arranging the data
+colnames(INTbyPerformance)[which(names(INTbyPerformance)== 
+                                   "sum(performance)")] <- "total_performance"
+  
+INTbyPerformance <- INTbyPerformance %>% arrange(desc(total_performance)) 
+
+top25Countries <- INTbyPerformance %>% slice(1:25)
+
+#Generating the bar chart for the top 25 countries in ascending order
+ggplot(top25Countries) + aes(x = reorder(COUNTRY, total_performance), y = total_performance) + 
+  geom_bar(stat="identity", colour = "black", fill = "lightblue") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  ggtitle("Overall stats performance by country") + xlab("Country") +
+  ylab("performance")
+
+
+
+#Summarizing by both All Star appearances and performance
+
+INT_allStars_Perf <- INTdf %>% group_by(COUNTRY) %>% summarise_at(c("ALL_STAR_APPEARANCES",
+                                                               "performance"),sum)
+
+filteredINT <- INT_allStars_Perf %>% filter(performance > mean(performance) & 
+                                              ALL_STAR_APPEARANCES > 5)
+
+
+
+
+
 
 
