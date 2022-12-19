@@ -176,6 +176,27 @@ We set up our model and trained it using 70% of the data set. We then saw how we
 
 ![Linear Model Outcome 1](https://user-images.githubusercontent.com/119478875/208361806-2cb68f76-64aa-49a1-ac20-c5cc21afca2f.png)
 
+![Linear Model Outcome 1 correlation value](https://user-images.githubusercontent.com/119478875/208362341-37ec2d3b-2494-4dfc-997b-d771a7425265.png)
+
+Our results show us an R squared of just .15 and a correlation from the predictive values of only .17. This shows us that there is not much correlation between being the first draft pick vs. performance.
+
+* SVM MODEL
+
+![SVM model code](https://user-images.githubusercontent.com/119478875/208362908-bd33306f-f0be-40e2-a18c-89af2013b662.png)
+
+
+
+
+Finally, the SVM model also showed similar results to the previous model. 
+
+![SVM model](https://user-images.githubusercontent.com/119478875/208362929-833fede4-716a-406f-b715-e89e73f96d40.png)
+
+
+
+While the model shows to have great predictive power, the big point here is that the no information rate is as good as our model. That means that anyone's best guess would do just as good as our model. 
+
+![SVM model confusion matrix](https://user-images.githubusercontent.com/119478875/208362955-23cef2be-7dd9-498c-b203-5d822046c0d0.png)
+
 
 
 ### Data Modeling for Business Question 3:  Optimal Geolocation
