@@ -183,14 +183,14 @@ In conclusion you can see by the addition of maps that a great majority of the t
 ## 5. Data Modeling
 
 ### Data Modeling for Business Question 1: Salary vs. Player Performance
-### Linear Models
+* Linear Models
 For the salary dataset we did two linear models with both total salary and average salary vs our performance statistic, PRA.  
 ![Picture8](https://user-images.githubusercontent.com/80026659/208272780-f04181cc-5448-4bb1-8aaf-b854566bd498.png)
 ![Picture9](https://user-images.githubusercontent.com/80026659/208272782-2ba9a953-4c9d-413f-b449-29c4451d49bb.png)
 
 The first linear model for total salary has an adjusted R squared value of .53 which means that approximately 53% of the variance in total salary is explained by our performance statistic.  Average salary has a higher adjusted R squared with 62% of the variance in average salary being explained by the performance statistic.
 
-* SVM MODEL
+* SVM Model
 Our team wanted to create a SVM that will predict if someone with a high PRA will get a higher salary. So, we must create a binary factor to use. 
 
 ![SVM model 2](https://user-images.githubusercontent.com/118240779/208517194-5015763a-88d7-44bb-a79b-96d09c5f143c.jpg)
@@ -213,7 +213,7 @@ Our team wanted to run two types of models on first draft picks. One of which wa
 
 The second model was the Support Vector Machine that would be able to see if there was a way to predict whether being a first round pick had a higher chance of earning an All Star Appearance. 
 
-* LINEAR MODEL
+* Linear Model 
 ![LM model](https://user-images.githubusercontent.com/119478875/208361882-4a2e3386-333e-45c5-b62f-117fa13112ea.png)
 
 We set up our model and trained it using 70% of the data set. We then saw how well of a predictive model this was down below:
@@ -229,7 +229,7 @@ We can use this model to answer part of our business question and see which play
 
 So we would expect a player that averaged 10 points, 5 assists, and 5 rebounds per game (20 PRA) to have a contract valued at $12,583,344.  To maximize the value and performance of our team we would want to sign a player with those statistics to a contract of 12 million or less.  This can also help when having to give players new contracts deciding what an equitable value is based on their performance.
 
-* SVM MODEL
+* SVM Model
 
 ![SVM model code](https://user-images.githubusercontent.com/119478875/208362908-bd33306f-f0be-40e2-a18c-89af2013b662.png)
 
@@ -297,22 +297,20 @@ ggplot(statsSalary, aes(x = avgSalary, y = PRA)) + geom_point() + ggtitle("Point
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-
-##this is the coding done to retrieve and view the dataset Player_Salary
+#this is the coding done to retrieve and view the dataset Player_Salary
 
 library(tidyverse)
 salaryDataset <- read_csv("C:\\Users\\madelyn\\Downloads\\Player_Salary.csv")
 view(salaryDataset)
 
-##this is the coding done to isolate salaryDataset so it just lists players and their salary aka value
+#this is the coding done to isolate salaryDataset so it just lists players and their salary aka value
 
 salary = salaryDataset %>% group_by(namePlayer)
 salary <- salary %>% summarise(value = sum(value))
 
 view(salary)
 
-##this is the coding done to retrieve and view the dataset Player_Attributes2
+#this is the coding done to retrieve and view the dataset Player_Attributes2
 
 playerDataset <- read_csv("C:\\Users\\madelyn\\Downloads\\Player_Attributes2.csv")
 
@@ -320,54 +318,145 @@ colnames(playerDataset)[2] = "namePlayer"
 
 view(playerDataset)
 
-##this is the coding done to merge the salary table with the playerDataset table, according to the players name
+#this is the coding done to merge the salary table with the playerDataset table, according to the players name
 
 statsSalary <- merge(salary, playerDataset, by = "namePlayer")
 
 str(statsSalary)
 view(statsSalary)
 
-##this also shows me that there are no missing values in statsSalary
+#this also shows me that there are no missing values in statsSalary
 summary(statsSalary$value)
 
-##this is me changing the column name in statsSalary from "value" to "salary"
+#this is me changing the column name in statsSalary from "value" to "salary"
 colnames(statsSalary)
 colnames(statsSalary)[2] = "salary"
 
-##here I am narrowing down the statsSalary table by creating a new subset of salaries that are over $100,000,000 and labeling it BigSalary
+#here I am narrowing down the statsSalary table by creating a new subset of salaries that are over 100,000,000 and labeling it BigSalary
 BigSalary <- subset(statsSalary, statsSalary$salary > 100000000)
 
-##here I am seeing how many salaries are in this new group 
+#here I am seeing how many salaries are in this new group 
 str(BigSalary)
 summary(BigSalary)
 
 
-##Here I have made a bar chart of the NBA Players who are a part of the "Big Salary" and I have ordered it from highest salary, to lowest salary
+#Here I have made a bar chart of the NBA Players who are a part of the "Big Salary" and I have ordered it from highest salary, to lowest salary
 library(ggplot2)
 library(forcats)
 
 ggplot(data=BigSalary, aes(x=fct_reorder(namePlayer, salary), y=salary)) + geom_col() + coord_flip()+ ggtitle("Names of NBA Players with the Biggest Salary")
 
 
-##Here I am adding the values from PTS, REB, and AST for each player to get their PRA statistic. This is now going to be a new column in the statsSalary dataframe
-statsSalary$PRA<- statsSalary$PTS + statsSalary$AST + statsSalary$REB
+#Here I am adding the values from PTS, REB, and AST for each player to get their PRA statistic, this is now going to be a new column in the statsSalary dataframe
+
+statsSalary$PRA <- statsSalary$PTS + statsSalary$AST + statsSalary$REB
 
 view(statsSalary)
 
-##Here I am seeing what the min, median, and max PRA are in this dataset
+#Here I am seeing what the min, median, and max PRA are in this dataset
 summary(statsSalary$PRA)
 
-##here I am creating a subset table from statsSalary with the NBA players who have a PRA stat higher than 40
+#here I am creating a subset table from statsSalary with the NBA players who have a PRA stat higher than 40
 HighPRA<- subset(statsSalary, statsSalary$PRA > 40)
 str(HighPRA)
 summary(HighPRA)
 
 
-##Here I have made a bar chart of the NBA Players who have a PRA higher than 40
+#Here I have made a bar chart of the NBA Players who have a PRA higher than 40
 library(ggplot2)
 library(forcats)
 
 ggplot(data=HighPRA, aes(x=fct_reorder(namePlayer, PRA), y=PRA)) + geom_col() + coord_flip() + ggtitle("Names of NBA Players with the Highest PRA")
+
+
+#creating SVM that will predict if someone with a high PRA will get a higher salary
+#creating a new dataframe called salaryPRA that has salary, position and PRA
+
+library(readr)
+library(tidyverse)
+
+salaryPRA<- statsSalary[,c(2,4,9)]
+
+str(salaryPRA)
+summary(salaryPRA)
+
+#making a new category where the PRA is binary so PRA greater than 16 equals 1 and everything else is equal to 0. The PRA mean is 15.59 
+
+salaryPRA$Category <- ifelse(salaryPRA$PRA>16, "1","0")
+salaryPRA
+view(salaryPRA)
+
+#setting the outcome we are trying to predict
+
+salaryPRA1 <- data.frame( salary = salaryPRA$salary, 
+                          position = salaryPRA$POSITION ,
+                          PRA = salaryPRA$PRA, 
+                          category = as.factor(salaryPRA$Category))
+                          
+str(salaryPRA1)
+
+
+#creating 2 datasets, one for training and one for testing
+install.packages("caret")
+library(caret)
+
+trainsalaryPRA <- createDataPartition(y=salaryPRA$Category, p=.70, list=FALSE)
+trainsetsalaryPRA <- salaryPRA1[trainsalaryPRA, ]
+testsetsalaryPRA <- salaryPRA1[-trainsalaryPRA, ]
+
+
+dim(trainsetsalaryPRA)
+
+dim(testsetsalaryPRA)
+
+#using caret package to build svm to predict PRA
+
+svm.model <- train(category~ ., 
+                  data = trainsetsalaryPRA, 
+                   method = "svmRadial", 
+                   trControl=trainControl(method= "none"),
+                   preProcess = c("center", "scale"))
+
+svm.model
+
+#output model 
+
+svm.model$finalModel
+
+
+#using predict function to validate the model against test data
+
+svmPred <- predict(svm.model, testsetsalaryPRA, type= "raw")
+
+head(svmPred)
+
+#calculate confusion matrix using table function
+
+compare <- data.frame(testsetsalaryPRA$category, svmPred)
+table(testsetsalaryPRA$category, svmPred)
+
+x <- table(testsetsalaryPRA$category, svmPred)
+accuracy <- c(x[1,1] + x[2,2])/sum(x)
+accuracy
+
+#The accuracy in the confusion matrix is the amount of correctly predicted samples, divided by the total amount of salmes. This suggests 90% of the predicted samples were accurate. 
+
+#comparing calculations with the confusionMatrix function from the caret package
+
+confusionMatrix(testsetsalaryPRA$category, svmPred)
+
+#encoding the target feature as factor
+library(rpart)
+library(e1071)
+library(rpart.plot)
+
+model <- rpart(category ~ ., data = trainsetsalaryPRA, method= "class")
+
+rpart.plot(model)
+
+pred_rpart <- predict(model, newdata= testsetsalaryPRA, type = "class")
+confusionMatrix(testsetsalaryPRA$category, pred_rpart)
+
 
 Business Question 2:
 
