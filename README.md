@@ -11,7 +11,8 @@
 3. Data Cleanse/ Munging/ Preparation
 4. Descriptive Statistics/ Vizualizations
 5. Data Modeling
-6. Appendix - Code
+6. Conclusions
+7. Appendix - Code
 
 ***
 ## 1. Introduction
@@ -43,7 +44,22 @@ Exibit 3.1) *This query was used to pull just the "player attributes" dataset fr
 
 ![sample query](https://user-images.githubusercontent.com/119478875/208268033-eca28f39-73bd-479b-964b-f5bf904e9c83.png)
 
-### Data preparation for business question 1:
+
+
+### Data preparation for business question 1: Salary vs. Player Performance
+
+In our data set the salary for players and the performance were located in two different tables.  The salary was listed for each contract, which meant in the salary table each player had multiple rows.  The first step to getting the data set ready was to group the contracts by the players name and get both the sum and average contract for each player in the salary table.
+
+ ![Picture1](https://user-images.githubusercontent.com/80026659/208272688-3c842eec-723e-4c28-99b3-5d354dda0c40.png)
+
+After getting the salary dataset grouped by player with both sum and average contract, we could combine in with the table containing player performance statistics.
+![Picture10](https://user-images.githubusercontent.com/80026659/208272762-04d0b7ee-fe60-43ea-8ae9-dbb6d63049fa.png)
+
+
+After merging the datasets we were left with 415 players that had both player performance statistics as well as salary data.  We then added the statistics Points, Rebounds, and Assists into one variable called PRA.
+![Picture2](https://user-images.githubusercontent.com/80026659/208272691-31bc6d90-c9ee-47a0-84a4-4cc79ebc0bc4.png)
+
+### Data preparation for business question 2: First Draft Pick
 
 * After the csv was read using read_csv(), we inspected the columns available to us and created a dataframe with the only columns we needed:
 
@@ -79,25 +95,11 @@ TOTAL_POINTS <- df$PTS+df$AST+df$REB
 TOTAL_POINTS
 df$TOTAL_POINTS <- c(TOTAL_POINTS)
 
-### Data preparation for business question 2:
-
-In our data set the salary for players and the performance were located in two different tables.  The salary was listed for each contract, which meant in the salary table each player had multiple rows.  The first step to getting the data set ready was to group the contracts by the players name and get both the sum and average contract for each player in the salary table.
-
- ![Picture1](https://user-images.githubusercontent.com/80026659/208272688-3c842eec-723e-4c28-99b3-5d354dda0c40.png)
-
-After getting the salary dataset grouped by player with both sum and average contract, we could combine in with the table containing player performance statistics.
-![Picture10](https://user-images.githubusercontent.com/80026659/208272762-04d0b7ee-fe60-43ea-8ae9-dbb6d63049fa.png)
-
-
-After merging the datasets we were left with 415 players that had both player performance statistics as well as salary data.  We then added the statistics Points, Rebounds, and Assists into one variable called PRA.
-![Picture2](https://user-images.githubusercontent.com/80026659/208272691-31bc6d90-c9ee-47a0-84a4-4cc79ebc0bc4.png)
-
-
 ### Data preparation for business question 3:
 
 ## 4. Descriptive Statistics & Visualizations
 
-### Statistics & Visualizations for Business Question 1
+### Statistics & Visualizations for Business Question 1: First Draft Pick
 
 ### Statistics & Visualizations for Business Question 2
 
