@@ -112,12 +112,15 @@ This scatter plot compares total production with average contract (not average p
 
 ### Column Charts
 This column chart compares years of experience with total career earnings for each player in the dataset.
+
 ![Picture5](https://user-images.githubusercontent.com/80026659/208272772-b18f26bd-4ee4-4fe6-b511-ae9448069b8c.png)
 
 This column chart compares years of experience with average career earnings for each player in the dataset.
+
 ![Picture6](https://user-images.githubusercontent.com/80026659/208272776-97f92661-9b2f-4339-9895-cf97e974f7c8.png)
 
 This column chart compares our performance statistic PRA with total years of expereince for each player in the dataset.
+
 ![Picture7](https://user-images.githubusercontent.com/80026659/208272778-252fd06a-d3b3-4e0c-b231-9978575384f9.png)
 
 From these datasets we can see that actually players with a medium level of experience (3-8) years seem to have the largest salaries both total and average contract and players with the most experience have the lowest total and average salaries.  Based on the chart showing performance and experience younger players in this dataset have much higher production than older players.  We would have suspected that more older players would have higher total career earnings but since our data set only has salary information for 415 players out of the 4500 total players in the set, it Is likely that these observations are not reflective of the whole.
