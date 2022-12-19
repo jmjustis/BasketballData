@@ -149,13 +149,23 @@ After the data was cleaned for business question 2, we decided to run some ggplo
 *As suspected, the line of best fit does not look good here with data dispearsed all over.*
 
 ### Statistics & Visualizations for Business Question 3: Optimal Geolocation
+### Bar Chart
+Here we take a look at which schools were the best at developing NBA caliber players
 ![Top schools for amount of NBA players produced bar chart ](https://user-images.githubusercontent.com/119911893/208447962-8df97f6c-64c9-4f5d-b37e-2656fbce77ff.png)
+### Visualizing it with maps
+By creating functions within R that takes the school name and location with the vector I created to be able to return Latitudes and longitudes of each school that I
+put inside the argument or parameter of the function and adding those coordinates to our dataframe to visualize the location with maps.
+
 ![Top schools by total amount of NBA players produced map](https://user-images.githubusercontent.com/119911893/208447651-841a5594-0aea-47f0-a6eb-60724b54b6f0.png)
+Here we further filter schools by amount of players that had at least one all star appearance
 ![Top schools by total amount of All stars bar chart](https://user-images.githubusercontent.com/119911893/208449763-08cd840d-2e00-406f-a97b-f2a880974aa3.png)
+Mapping those results you can see that not suprisingly most of the schools who developed the most amount of NBA players also developed the most all stars
 ![Top schools by historical amount of all star players map](https://user-images.githubusercontent.com/119911893/208446975-6623fed0-6a78-4c09-a6d2-36adc07b50d0.png)
+### Bar Chart for International countries based by players performance
+ On this bar chart we take a look at which international countries were the most successful at developing players into the NBA
 ![Top international countries by players perfomance](https://user-images.githubusercontent.com/119911893/208448814-d9eff148-62b7-4323-9882-4ac11dfc3c98.png)
 
-
+In conclusion you can see by the addition of maps that a great majority of the top schools in both metrics are located in the mid west region of the US. And you can see that not surprisingly the top schools include big names like UCLA, Kentucky and Duke.
 
 ## 5. Data Modeling
 
