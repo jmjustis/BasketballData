@@ -150,11 +150,10 @@ After the data was cleaned for business question 2, we decided to run some ggplo
 
 ### Statistics & Visualizations for Business Question 3: Optimal Geolocation
 ### Bar Chart
-Here we take a look at which schools were the best at developing NBA caliber players
+Here we take a look at which schools were the best at developing NBA caliber players.
 ![Top schools for amount of NBA players produced bar chart ](https://user-images.githubusercontent.com/119911893/208447962-8df97f6c-64c9-4f5d-b37e-2656fbce77ff.png)
 ### Visualizing it with maps
-By creating functions within R that takes the school name and location with the vector I created to be able to return Latitudes and longitudes of each school that I
-put inside the argument or parameter of the function and adding those coordinates to our dataframe to visualize the location with maps.
+By creating functions within R that takes the school name and location from the streetmaps.org website with the vector I created to be able to return Latitudes and longitudes of each school that I put inside the argument or parameter of the function and adding those coordinates to our dataframe to visualize the location with maps.
 
 ![Top schools by total amount of NBA players produced map](https://user-images.githubusercontent.com/119911893/208447651-841a5594-0aea-47f0-a6eb-60724b54b6f0.png)
 Here we further filter schools by amount of players that had at least one all star appearance
