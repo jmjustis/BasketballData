@@ -21,7 +21,8 @@ Our approach was to put ourselves in the shoes of a management team that is assi
 
 ## 2. Business Questions
 1. Is there a relationship between a player’s salary and player’s performance?
-    * Do the same players with the highest PRA (points, rebounds & assists) make the most money?
+    * Which players are undervalued or overvalued?
+    * How much should we pay a player based on their performance?
 
 *(This business question helps our team determine budgeting costs. What is the most optimal salary to pay? Does a big salary improve performance?)*
 
@@ -195,6 +196,10 @@ We set up our model and trained it using 70% of the data set. We then saw how we
 ![Linear Model Outcome 1 correlation value](https://user-images.githubusercontent.com/119478875/208362341-37ec2d3b-2494-4dfc-997b-d771a7425265.png)
 
 Our results show us an R squared of just .15 and a correlation from the predictive values of only .17. This shows us that there is not much correlation between being the first draft pick vs. performance.
+
+We can use this model to answer part of our business question and see which players are over or undervalued and how much we should pay each player.  Based on the second model which is using average contract amount we get an intercept of -3,690,576 and a coeffecient of 813,696 for our peformance statistic.  We can interpret this to mean that a player needs to average at least 4.5 PRA and then each additional point rebound or assist above that is worth $813,696 of additional contract value.  
+
+So we would expect a player that averaged 10 points, 5 assists, and 5 rebounds per game (20 PRA) to have a contract valued at $12,583,344.  To maximize the value and performance of our team we would want to sign a player with those statistics to a contract of 12 million or less.  This can also help when having to give players new contracts deciding what an equitable value is based on their performance.
 
 * SVM MODEL
 
