@@ -44,8 +44,6 @@ Exibit 3.1) *This query was used to pull just the "player attributes" dataset fr
 
 ![sample query](https://user-images.githubusercontent.com/119478875/208268033-eca28f39-73bd-479b-964b-f5bf904e9c83.png)
 
-
-
 ### Data preparation for business question 1: Salary vs. Player Performance
 
 In our data set the salary for players and the performance were located in two different tables.  The salary was listed for each contract, which meant in the salary table each player had multiple rows.  The first step to getting the data set ready was to group the contracts by the players name and get both the sum and average contract for each player in the salary table.
@@ -95,13 +93,12 @@ TOTAL_POINTS <- df$PTS+df$AST+df$REB
 TOTAL_POINTS
 df$TOTAL_POINTS <- c(TOTAL_POINTS)
 
-### Data preparation for business question 3:
+### Data preparation for business question 3: Optimal Geolocation
 
 ## 4. Descriptive Statistics & Visualizations
 
-### Statistics & Visualizations for Business Question 1: First Draft Pick
+### Statistics & Visualizations for Business Question 1: Salary vs. Player Performance
 
-### Statistics & Visualizations for Business Question 2
 
 ### Scatter Plots
 This scatter plot compares total production (Points + Rebounds + Assists) with career earnings of each player in the dataset.  There is a large grouping of players with very low career earnings which is likely due to a large proportion of players only receiving one or two contracts in their careers as well as younger players that are still on of their first contracts even if that contract is large their career earnings are smaller compared to more experienced players.  
@@ -109,31 +106,9 @@ This scatter plot compares total production (Points + Rebounds + Assists) with c
 ![Picture3](https://user-images.githubusercontent.com/80026659/208272695-3a6d3d17-69bc-4c48-9996-57d03107c972.png)
 
 
-
-
-
-
-
-
-
-
-
 This scatter plot compares total production with average contract (not average per year as the data set did not provide lengths on contracts).  When comparing performance with average salary rather than total salary, the data is spread more evenly and appears to have a stronger linear relationship.
 
 ![Picture4](https://user-images.githubusercontent.com/80026659/208272697-567af282-91dd-48b5-9347-f90ac00dbe44.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ### Column Charts
 This column chart compares years of experience with total career earnings for each player in the dataset.
@@ -148,16 +123,14 @@ This column chart compares our performance statistic PRA with total years of exp
 From these datasets we can see that actually players with a medium level of experience (3-8) years seem to have the largest salaries both total and average contract and players with the most experience have the lowest total and average salaries.  Based on the chart showing performance and experience younger players in this dataset have much higher production than older players.  We would have suspected that more older players would have higher total career earnings but since our data set only has salary information for 415 players out of the 4500 total players in the set, it Is likely that these observations are not reflective of the whole.
 
 
+### Statistics & Visualizations for Business Question 2: First Draft Pick
 
-
-### Statistics & Visualizations for Business Question 3
-
-
+### Statistics & Visualizations for Business Question 3: Optimal Geolocation
 
 
 ## 5. Data Modeling
 
-
+### Data Modeling for Business Question 1: Salary vs. Player Performance
 ### Linear Models
 For the salary dataset we did two linear models with both total salary and average salary vs our performance statistic, PRA.  
 ![Picture8](https://user-images.githubusercontent.com/80026659/208272780-f04181cc-5448-4bb1-8aaf-b854566bd498.png)
