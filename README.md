@@ -128,6 +128,26 @@ From these datasets we can see that actually players with a medium level of expe
 
 ### Statistics & Visualizations for Business Question 2: First Draft Pick
 
+After the data was cleaned for business question 2, we decided to run some ggplots to get a better understanding. 
+
+* First Draft Pick vs. All Star Appearance Scatter Plot:
+![Draft pick vs  All star appearance](https://user-images.githubusercontent.com/119478875/208358179-88208cbe-58ea-42bb-8f69-34fdbb5c42a8.png)
+
+*We can see visually that there does not seem to be much difference in being a draft pick vs. having all star appearances*
+
+* First Draft Pick vs. Total Points
+
+![Total Points vs Draft Number](https://user-images.githubusercontent.com/119478875/208358418-4e1963fe-bb88-4266-bacf-bfa6561616d7.png)
+
+*The data here looks a bit scattered but in the next exhibit, we will see how the data looks around a line of best fit.*
+
+
+* How dispearsed is the data around a line of best fit?
+
+![Total Points vs Draft Number with LM](https://user-images.githubusercontent.com/119478875/208358432-74de105e-38ec-45b4-a261-aa2f5df9a886.png)
+
+*As suspected, the line of best fit does not look good here with data dispearsed all over.*
+
 ### Statistics & Visualizations for Business Question 3: Optimal Geolocation
 
 
