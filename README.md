@@ -190,7 +190,22 @@ For the salary dataset we did two linear models with both total salary and avera
 
 The first linear model for total salary has an adjusted R squared value of .53 which means that approximately 53% of the variance in total salary is explained by our performance statistic.  Average salary has a higher adjusted R squared with 62% of the variance in average salary being explained by the performance statistic.
 
-*SVM Model for Business Question 1: Salary vs. Player Performance 
+* SVM MODEL
+Our team wanted to create a SVM that will predict if someone with a high PRA will get a higher salary. So, we must create a binary factor to use. 
+
+![SVM model 2](https://user-images.githubusercontent.com/118240779/208517194-5015763a-88d7-44bb-a79b-96d09c5f143c.jpg)
+
+Then we will create two datasets to train and test our prediction. After that, we will use the caret package to build the SVM and predict if PRA will affect salary
+
+![SVM model 3](https://user-images.githubusercontent.com/118240779/208517422-d2523d61-62cc-4c4a-bcb6-f106a7f5eb1d.jpg)
+
+Finally, we will use the prediction function we just made to validate the model against our test data and use the confusion matrix to inspect the accuracy of this prediction. 
+
+![SVM model 4](https://user-images.githubusercontent.com/118240779/208522034-88353eb2-d4cc-449f-b70a-c35e7905c346.jpg)
+
+
+We see that 91% of the predicted samples were accurate and the no information rate is at 67%. The information rate is lower than the accuracy rate in the confusion matrix, indicating this is a strong prediction model. The p-value is also very low, supporting our model's integrity. 
+
 
 ### Data Modeling for Business Question 2: First Draft Pick
 
