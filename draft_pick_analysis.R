@@ -13,7 +13,7 @@ library(ggplot2)
 library(readr)
 #exploring database
 
-player_attributes_df <- read_csv('C:\Users\nicky\Desktop\IST 687\Project\draft_pick_analysis_data_set.csv')
+player_attributes_df <- read_csv('C:/Users/nicky/Desktop/IST 687/Project/draft_pick_analysis_data_set.csv')
 view(player_attributes_df)
 str(player_attributes_df)
 
@@ -72,10 +72,10 @@ str(df)
 
 #visualizations
 
-myplot <- ggplot(df, aes(x=DRAFT_NUMBER, y=ALL_STAR)) + geom_point() 
+myplot <- ggplot(df, aes(x=ALL_STAR, y=DRAFT_NUMBER)) + geom_point() 
 myplot
 
-#
+
 
 #creating a column to calculate player with best stats by adding points, assists and rebounds
 
@@ -103,19 +103,21 @@ dim(testData)
 
 set.seed(123)
 
-lm.model <- train(DRAFT_NUMBER ~ TOTAL_POINTS, data = trainData, trControl=trainControl(method='none'),method='lm')
+lm.model <- train(TOTAL_POINTS ~ DRAFT_NUMBER, data = trainData, trControl=trainControl(method='none'),method='lm')
 summary(lm.model)
 
 predictValues <- predict(lm.model, newdata=testData)
-cor(predictValues,testData$DRAFT_NUMBER)^2
+cor(predictValues,testData$TOTAL_POINTS)^2
 
-#we see that R squared is only .13 and the correlation is very low 0.16
+#we see that R squared is low and so is the correlation
+
 length(df$ALL_STAR[is.na(df$ALL_STAR)])
 
 #Making it a factor
 df$ALL_STAR <- as.factor(df$ALL_STAR)
+
 #SVM model that shows if draft number is a good predictor of an all star appearance
-set.seed(111)
+#set.seed(123)
 trainList2 <- createDataPartition(y=df$ALL_STAR,p=.70,list=FALSE)
 trainData2 <- df[trainList2,]
 testData2 <- df[-trainList2,]
@@ -123,8 +125,7 @@ testData2 <- df[-trainList2,]
 dim(trainData2)
 dim(testData2)
 
-svm.model <- train(ALL_STAR~ + DRAFT_YEAR + DRAFT_NUMBER + PTS + REB
-                  + AST 
+svm.model <- train(ALL_STAR ~ DRAFT_NUMBER + TOTAL_POINTS
                    , data=trainData2,method='svmRadial',trControl=trainControl(method='none'),
                    preProcess= c('center','scale'))
 svm.model$finalModel
