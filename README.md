@@ -805,6 +805,102 @@ myBaseMap + geom_point(data = top15SchoolsWithLoc,
   geom_text(data = top15SchoolsWithLoc, aes(x = schoolLongitudes, y = schoolLatitudes, 
                 label = SCHOOL, hjust=0, vjust=0, size = 1),size = 1.5) +
   theme(plot.title = element_text(hjust = 0.5))
+  
+  
+  #Filter the data sets for players with at least 1 all star appearance
+USdf %>% filter(ALL_STAR_APPEARANCES > 0) -> US_allStars
+
+US_allStars %>% mutate(All_star = 1) -> US_allStars
+
+#Grouping by School
+
+US_allStars %>% group_by(SCHOOL) %>% summarise(sum(All_star)) -> schoolStars
+
+colnames(schoolStars)[which(names(schoolStars) ==
+                              "sum(All_star)")] <- "allStar_players"
+
+#Rearranging columns
+
+schoolStars %>% arrange(desc(allStar_players)) -> schoolStars
+
+#Selecting the top 14 schools with most all star players
+
+schoolStars %>% slice(1:14) -> schoolStars
+
+#Generating the graph
+
+schoolStarsDesc <- schoolStars
+#Ordering the data in descending order for plotting
+schoolStarsDesc$SCHOOL <- factor(schoolStarsDesc$SCHOOL, levels =
+                                    schoolStarsDesc$SCHOOL[order(
+                                      schoolStarsDesc$allStar_players,
+                                      decreasing = TRUE)])
+#Generating the bar graph
+ggplot(schoolStarsDesc) + aes(x=SCHOOL, y = allStar_players) + 
+  geom_bar(stat="identity", colour = "black", fill = "aquamarine1") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  ggtitle("Top 14 schools by number of all star players") + xlab("School") +
+  ylab("Total all stars")
+
+
+
+#School addresses
+
+allStarSchools <- c("University of California Los Angeles, CA 90095",
+                    "North Carolina Chapel hill, NC","University of Michigan, Ann Arbor, MI",
+                    "University of Kentucky","Duke Durham, NC", 
+                    "Illinois State University, IL","Indiana University Bloomington, IN",
+                    "Kansas University Lawrence, KS","St John's university, NY",
+                    "California State Fullerton, CA", "University of Louisville, KY",
+                    "Michigan state university, MI","Notre Dame, IN", "Ohio State University, OH"
+                    
+                    )
+
+schoolLats <- c(getLatitude("University of california, Los Angeles, CA"),
+                     getLatitude("North Carolina Chapel hill, NC"),
+                     getLatitude("University of Michigan, Ann Arbor, MI"),
+                     getLatitude("University of Kentucky"),
+                     getLatitude("Duke Durham, NC"),
+                     getLatitude("Illinois State University, IL"),
+                     getLatitude("Indiana University Bloomington, IN"),
+                     getLatitude("Kansas University Lawrence, KS"),
+                     getLatitude("St John's university, NY"),
+                     getLatitude("California State Fullerton, CA"),
+                     getLatitude("University of Louisville, KY"),
+                     getLatitude("Michigan state university, MI"),
+                     getLatitude("Notre Dame, IN"),
+                     getLatitude("Ohio State University, OH"))
+
+
+schoolLons <- c(getLongitude("University of california, Los Angeles, CA"),
+                getLongitude("North Carolina Chapel hill, NC"),
+                getLongitude("University of Michigan, Ann Arbor, MI"),
+                getLongitude("University of Kentucky"),
+                getLongitude("Duke Durham, NC"),
+                getLongitude("Illinois State University, IL"),
+                getLongitude("Indiana University Bloomington, IN"),
+                getLongitude("Kansas University Lawrence, KS"),
+                getLongitude("St John's university, NY"),
+                getLongitude("California State Fullerton, CA"),
+                getLongitude("University of Louisville, KY"),
+                getLongitude("Michigan state university, MI"),
+                getLongitude("Notre Dame, IN"),
+                getLongitude("Ohio State University, OH"))
+
+
+###Creating a new dataframe with the schools location
+schoolStarsWithLoc <- data.frame(schoolStars,schoolLats,schoolLons)
+
+
+#Generating the schools map
+myBaseMap + geom_point(data = schoolStarsWithLoc,
+                       aes(x = schoolLons, y = schoolLats,
+                           color = allStar_players), 
+                       size = 1.5) +
+  scale_color_continuous(trans = 'reverse') + ggtitle("Top US all stars schools") +
+  geom_text(data = schoolStarsWithLoc, aes(x = schoolLons, y = schoolLats, 
+                                            label = SCHOOL, hjust=0, vjust=0, size = 1),size = 1.5) +
+  theme(plot.title = element_text(hjust = 0.5))
     #Working with the International players data       
 #Adding performance variable to the df
 INTdf %>% mutate(performance = PTS + 2*AST + 1.5*REB) -> INTdf
