@@ -95,7 +95,37 @@ TOTAL_POINTS
 df$TOTAL_POINTS <- c(TOTAL_POINTS)
 
 ### Data preparation for business question 3: Optimal Geolocation
+Extracted the columns i needed from the SQL file and downloading it and importing it as a cvs file using the read_csv() function.
+assigned the the file to the df variable.
 
+df <- df[,-1]  Used this code to get rid of the unnecessary indexes and then procceded to check for NA's using the length(df$var[is.na(df$var)] to
+check for NA's across the variables.
+
+Then procceded to eliminate them accordingly, for numeric variables like PTS, AST. REB and ALL_STAR_APPEARANCES all NA's were replaced with zeros using:
+df$PTS[is.na(df$PTS)] <- 0
+df$AST[is.na(df$AST)] <- 0
+df$REB[is.na(df$REB)] <- 0
+df$ALL_STAR_APPEARANCES[is.na(df$ALL_STAR_APPEARANCES)] <- 0
+
+Then separated the dataframe into US players and international players using the filter function from tidyverse
+
+df %>% filter(COUNTRY == 'USA') -> USdf
+
+#International players 
+df %>% filter(COUNTRY != 'USA') -> INTdf
+
+With this now I was able to work with the data for selecting the top schools and with the international players date to see which country tends to have
+the most productive players in terms of points, assists and rebounds.
+
+For the Maps preparation it was particularly challenging because i had to extract the coordinates from the schools,and since the amount of schools was too great it was necessary to further organize the data using the group_by() function in combination with summarize to see where the top schools are in terms of both all star players
+and amount of nba players developed overall.
+
+Created a separate vector variable concatenating the top schools locations and with the "https://nominatim.openstreetmap.org/search/" i was able to create
+two functions that would allow me to extract the latitude and longitude coordinates given the school name and state. It would do that with the paste0() function
+where it would grab this link and paste the school adresss and then return as.numeric() both latitude and longitude using JsonLite within the function in which
+all the code is included in the appendix. 
+
+Once the coordinates have been extracted, I used data.frame() to join the latitude, longitude and location to the filtered dataframe and from there proceded to make the mapping with ggmaps and ggplot().  
 ## 4. Descriptive Statistics & Visualizations
 
 ### Statistics & Visualizations for Business Question 1: Salary vs. Player Performance
